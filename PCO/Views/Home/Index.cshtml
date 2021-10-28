@@ -1,0 +1,256 @@
+﻿
+@model PCO.ViewHelper.ViewHelper;
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>PCO WEB</title>
+    <!-- <link rel="stylesheet" type="text/css" href="~/css/reset.css" />-->
+    <link rel="stylesheet" type="text/css" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/bootstrap-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/principal.css" type="text/css" />
+    <meta Http-Equiv="Cache-Control" Content="no-cache">
+    <meta Http-Equiv="Pragma" Content="no-cache">
+    <meta Http-Equiv="Expires" Content="0">
+</head>
+<body onload="pesquisar()">
+
+    <div id="header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary" style="padding:0; background-color:#1759d3!important;">
+            <div class="collapse navbar-collapse" id="img-logo">
+                <img src="~/images/logo-fresadora-santana.jpg" />
+            </div>
+
+            <div class="collapse navbar-collapse" style="margin-left:10px;font-size:14px;color:#fff;">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active"> Bem Vindo, @Model.user.Nome!</li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse" style="color:#fff;">
+                <ul class="navbar-nav mr-auto">
+
+                    @{
+                        if (Model.user.Nivel == 0)
+                        {
+                            <li>Nível: Master</li>
+                        }
+                    }
+
+                </ul>
+            </div>
+
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" style="color:#fff;">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <u><a class="nav-link" href="@Url.Action("Logout", "Login")" style="color:#fff; ">Sair</a></u>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" style="color:#fff;">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <u><a class="nav-link" href="~/Documents/Manual.pdf" target="_blank" style="color:#fff; ">Ajuda</a></u>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+
+
+
+
+    <div>
+
+        <div class="tabela">
+            <div class="busca">
+                <div class="xCampos">
+                    <div class="cEntrada1">
+                        <div>
+                            <label for="txtInicio">Data Inicial: <br><input class="form-control mb-2 mr-sm-2" id="txtDataInicio" type="date" name="txtDataInicio" size="10" style="width:125px; height:25px; margin:5px;" /></label>
+                            <label for="txtHorizonte">Horizonte:<br> <input class="form-control mb-2 mr-sm-2" type="number" name="txtHorizonte" id="txtHorizonte" size="3" onkeypress="dispararPesquisa()" style="width:65px; height:25px; margin:5px;" value="5" /></label>
+                            <label for="txtTipo">Tipo: <br><input class="form-control mb-2 mr-sm-2" type="number" name="txtTipo" id="txtTipo" size="5" onkeypress="dispararPesquisa()" style="width:65px; height:25px; margin:5px;" /></label>
+                            <label for="txtConta">Conta: <br><input class="form-control mb-2 mr-sm-2" type="number" name="txtConta" id="txtConta" size="5" onkeypress="dispararPesquisa()" style="width:65px; height:25px; margin:5px;" /></label>
+                            <input type="hidden" name="txtLogin" id="txtLogin" value="@Model.user.Login" />
+                            <label for="txtMoeda">
+                                Moeda: <br>
+                                <select name="txtMoeda" id="txtMoeda" class="form-control mb-2 mr-sm-2" style="width:100px; height:25px; margin:5px;font-size:10px; padding:0;"  onchange="pesquisar()">
+                                    <option value="0" style="font-size:10px;">0 [*] Todos</option>
+                                    <option value="1" style="font-size:10px;">1 [MS] Master para distribuição</option>
+                                    <option value="2" style="font-size:10px;">2 [PC] Pedido de compra</option>
+                                    <option value="3" style="font-size:10px;">3 [PV] Despesa Mensal</option>
+                                </select>
+                            </label>
+                            <label for="txtSituacao">
+                                Situação: <br>
+                                          <select name="txtSituacao" id="txtSituacao" class="form-control mb-2 mr-sm-2" style="width:100px; height:25px; margin:5px;font-size:10px;padding:0;" onchange="pesquisar()">
+                                              <option value="0" style="font-size:10px;">0 Todos</option>
+                                              <option value="1" style="font-size:10px;">1 Fechado</option>
+                                              <option value="2" style="font-size:10px;">2 Aprovado</option>
+                                              <option value="3" style="font-size:10px;">3 Bloqueado</option>
+                                              <option value="-1" style="font-size:10px;">-1 Revisado</option>
+                                              <option value="-2" style="font-size:10px;">-2 Alterado</option>
+
+                                          </select>
+                            </label>
+                            @{
+                                if (Model.user.Nivel == 0)
+                                {
+
+                                    <label for="txtUsuario">
+                                        Responsavel: <br>
+                                        <select name="txtResponsavel" id="txtResponsavel" class="form-control mb-2 mr-sm-2" style="width:100px; height:25px; margin:5px;font-size:10px;padding:0;" onchange="pesquisar()" >
+                                            <option value="0" style="font-size:10px;">todos</option>
+                                            @{
+                                                foreach (var u in Model.TodosUsuarios)
+                                                {
+                                                    <option value="@u.Login" style="font-size:10px;">@u.Login</option>
+                                                }
+
+                                            }
+
+
+                                        </select>
+                                    </label>
+                                }
+                            }
+                            <button id="btnPesquisarHorizonte" class="btn btn-outline-success my-2 my-sm-0" onclick="pesquisar()" type="submit">Exibir</button>
+                        </div>
+                    </div>
+                    <div class="cEntrada2">
+                        <div>
+
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="chkSituacao" name="chkSituacao" onchange="dispararPesquisa()">
+                                <label class="custom-control-label" for="chkSituacao">Situação</label>
+                            </div>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="chkValorRealizado" name="chkValorRealizado" onchange="dispararPesquisa()">
+                                <label class="custom-control-label" for="chkValorRealizado">Valor Realizado</label>
+                            </div>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="chkDescricaoTipo" checked="checked" name="chkDescricaoTipo" onchange="dispararPesquisa()">
+                                <label class="custom-control-label" for="chkDescricaoTipo">Descrição Tipo</label>
+                            </div>
+
+                        </div>
+                        <div>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="chkDescricaoConta" checked="checked" name="chkDescricaoConta" onchange="dispararPesquisa()">
+                                <label class="custom-control-label" for="chkDescricaoConta">Descrição Conta</label>
+                            </div>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="chkIdTipo" checked="checked" name="chkIdTipo" onchange="dispararPesquisa()">
+                                <label class="custom-control-label" for="chkIdTipo">Id Tipo</label>
+                            </div>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="chkIdConta" checked="checked" name="chkIdConta" onchange="dispararPesquisa()">
+                                <label class="custom-control-label" for="chkIdConta">Id Conta</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- LOCAL ONDE VAI SER CRIARDA A TABELA -->
+        <div class="tabela">
+            <div class="table-responsive">
+                <table id="table table-striped">
+                    <thead>
+                        <tr id="cabecalho"></tr>
+                    </thead>
+                    <tbody id="conteudo"></tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div id="recebePopup">
+            <div class="popup" id="popup" onload="Buscador()">
+                <img src="~/images/chat-msg.jpg" />
+                <div id="popup-info">
+
+                </div>
+                <div class="top-popup">
+                    <label onclick="destroiPopup()" for="mostraMsg">X</label>
+                    <input type="checkbox" id="mostraMsg" name="mostraMsg" checked="checked" />
+
+                </div>
+
+                <div id="conteiner-msgs">
+
+
+                </div>
+
+                <div id="localDigitarMsg">
+                    <input type="hidden" id="txtID_Conta_Msg" />
+                    <input type="hidden" id="txtID_Tipo_Msg" />
+                    <input type="hidden" id="txtDataMes_Msg" />
+                    <input type="hidden" id="txtNameUser" value="<@Model.user.Login>" />
+                    <input type="hidden" id="txtValor_Msg" />
+                    <input type="hidden" id="txtDescricaoConta" />
+                    <input type="text" id="txtMsg" placeholder="Mensagem" onkeypress="enviarMensagemVerificar()" />
+                    <input type="button" id="btnMsg" value=">" onclick="enviarMensagemVerificar()" />
+                </div>
+
+            </div>
+
+        </div>
+
+        <div>
+            <input type="hidden" id="guardaValorSolicitado" />
+        </div>
+
+        <div class="footer">
+
+        </div>
+
+    </div>
+
+    <script>
+
+                                                                                                // iniciando a pesquisa - carregado quando a pagina realiza onload
+        function pesquisar() {
+            dataAtual()                                                                         // chamando a função com a data atual do sistema
+            pesquisarHorizonte(null, null, 0, 0, 0,@Model.user.Nivel, "<@Model.user.Login>");    //chamando função de pesquisa
+
+        }
+
+        function dataAtual() {                                                                  // função para pegar data atual
+            var dataAtual = new Date();                                                         // instanciando obj do tipo data
+                                                                                                // pegando a data de hoje
+            document.getElementsByName("txtDataInicio").value = dataAtual.getFullYear() + "-" + dataAtual.getMonth() + "-" + dataAtual.getDate();
+        }
+
+
+        
+
+    </script>
+    <!--  ADICIONANDO ARQUIVOS NECESSÁRIOS  PARA O SISTEMA, RESPONESÁVEIS POR TODAS FUNÇÕES
+            DESDE CRIAÇÃO DA TABELA ATÉ GRAVAÇÃO DE DADOS BLOCOSCANSEtESTE-->
+    <script src="~/js/horizonte.js"></script>
+    <script src="~/js/AlterarSituacao.js"></script>
+    <script src="~/js/atualizarDados.js"></script>
+    <script src="~/js/destruirTabela.js"></script>
+    <script src="~/js/criarPopup.js"></script>
+    <script src="~/js/CriarTabela.js"></script>
+    <script src="~/js/Aprovar.js"></script>
+    <script src="~/js/ReverterValor.js"></script>
+    <script src="~/js/regras.js"></script>
+    <script src="~/js/funcoes.js"></script>
+    <script src="~/js/criadorMensagem.js"></script>
+    <script src="~/js/criadorInformacoesPopup.js"></script>
+    <script src="~/js/enviarMensagem.js"></script>
+</body>
+</html>
+
+

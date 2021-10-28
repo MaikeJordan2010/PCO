@@ -1,0 +1,14 @@
+C:\Users\maike.p\source\repos\PCO\Persistence\bin\Release\netcoreapp2.2\Persistence.deps.json
+C:\Users\maike.p\source\repos\PCO\Persistence\bin\Release\netcoreapp2.2\Persistence.runtimeconfig.json
+C:\Users\maike.p\source\repos\PCO\Persistence\bin\Release\netcoreapp2.2\Persistence.runtimeconfig.dev.json
+C:\Users\maike.p\source\repos\PCO\Persistence\bin\Release\netcoreapp2.2\Persistence.dll
+C:\Users\maike.p\source\repos\PCO\Persistence\bin\Release\netcoreapp2.2\Persistence.pdb
+C:\Users\maike.p\source\repos\PCO\Persistence\bin\Release\netcoreapp2.2\Model.dll
+C:\Users\maike.p\source\repos\PCO\Persistence\bin\Release\netcoreapp2.2\Model.pdb
+C:\Users\maike.p\source\repos\PCO\Persistence\obj\Release\netcoreapp2.2\Persistence.csprojAssemblyReference.cache
+C:\Users\maike.p\source\repos\PCO\Persistence\obj\Release\netcoreapp2.2\Persistence.csproj.CoreCompileInputs.cache
+C:\Users\maike.p\source\repos\PCO\Persistence\obj\Release\netcoreapp2.2\Persistence.AssemblyInfoInputs.cache
+C:\Users\maike.p\source\repos\PCO\Persistence\obj\Release\netcoreapp2.2\Persistence.AssemblyInfo.cs
+C:\Users\maike.p\source\repos\PCO\Persistence\obj\Release\netcoreapp2.2\Persistence.csproj.CopyComplete
+C:\Users\maike.p\source\repos\PCO\Persistence\obj\Release\netcoreapp2.2\Persistence.dll
+C:\Users\maike.p\source\repos\PCO\Persistence\obj\Release\netcoreapp2.2\Persistence.pdb

@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>PCO WEB</title>
+    <!-- <link rel="stylesheet" type="text/css" href="css/reset.css" />-->
+    <link rel="stylesheet" type="text/css" href="~/css/style-login.css" />
+
+
+    <!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    -->
+
+</head>
+
+<body id="paginaLogin">
+
+    <div id="geral">
+        <div class="filter-body">
+            <form action="@Url.Action("Logar","Login")" method="post">
+                <div class="login-box">
+                    <h1>Login</h1>
+                    <div class="textbox">
+
+                        <i class="far fa-user"></i>
+                        <input type="text" placeholder="Username" name="Login" value="">
+                    </div>
+                    <div class="textbox">
+
+
+                        <i class="fas fa-key"></i>
+                        <input type="password" placeholder="Password" name="Password" value="">
+                    </div>
+
+                    <input class="btn" type="submit" name="" value="Entrar">
+                    @{
+                        var msg = ViewData["msg"];
+                        <p class="msgErro">@msg</p>
+                    }
+                </div>
+               
+            </form>
+
+        </div>
+    </div>
+    <script src="~/js/jQuery.js"></script>
+    <script src="~/js/html2canvas.min.js"></script>
+    <script src="~/js/canvas2Image.js"></script>
+    <script src="~/js/html2canvas.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+#top {
+    padding: 0;
+    width: 100%;
+    height: 50px;
+    background: #000;
+    color: #fff;
+    margin: 0 0 0 0;
+
+
+}
+#top-complete{
+    
+    width: 100%;
+    height: 100%;
+}
+.menu-top{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+.menu-ul {
+    float: right;
+    display: flex;
+    position: relative;
+    margin-top: 5px;
+}
+
+.menu-link {
+    list-style: none;
+    width: 14ch;
+    height: 100%;
+    display: block;
+    transition: 0.5;
+    float: right;
+    padding: 0 10px 0 10px;
+    text-align: center;
+    margin-top: inherit;
+    align-items: center
+}
+
+    .menu-link a {
+        font-family: sans-serif;
+        display: block;
+        position: relative;
+        text-decoration: none;
+        padding: 7px;
+        font-size: 18px;
+    }
+.menu-ul li a:hover {
+   background-color:aqua;
+}

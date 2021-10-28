@@ -1,0 +1,16 @@
+C:\Users\maike.p\source\repos\PCO\Business\bin\Release\netcoreapp2.2\Business.deps.json
+C:\Users\maike.p\source\repos\PCO\Business\bin\Release\netcoreapp2.2\Business.runtimeconfig.json
+C:\Users\maike.p\source\repos\PCO\Business\bin\Release\netcoreapp2.2\Business.runtimeconfig.dev.json
+C:\Users\maike.p\source\repos\PCO\Business\bin\Release\netcoreapp2.2\Business.dll
+C:\Users\maike.p\source\repos\PCO\Business\bin\Release\netcoreapp2.2\Business.pdb
+C:\Users\maike.p\source\repos\PCO\Business\bin\Release\netcoreapp2.2\Model.dll
+C:\Users\maike.p\source\repos\PCO\Business\bin\Release\netcoreapp2.2\Persistence.dll
+C:\Users\maike.p\source\repos\PCO\Business\bin\Release\netcoreapp2.2\Model.pdb
+C:\Users\maike.p\source\repos\PCO\Business\bin\Release\netcoreapp2.2\Persistence.pdb
+C:\Users\maike.p\source\repos\PCO\Business\obj\Release\netcoreapp2.2\Business.csprojAssemblyReference.cache
+C:\Users\maike.p\source\repos\PCO\Business\obj\Release\netcoreapp2.2\Business.csproj.CoreCompileInputs.cache
+C:\Users\maike.p\source\repos\PCO\Business\obj\Release\netcoreapp2.2\Business.AssemblyInfoInputs.cache
+C:\Users\maike.p\source\repos\PCO\Business\obj\Release\netcoreapp2.2\Business.AssemblyInfo.cs
+C:\Users\maike.p\source\repos\PCO\Business\obj\Release\netcoreapp2.2\Business.csproj.CopyComplete
+C:\Users\maike.p\source\repos\PCO\Business\obj\Release\netcoreapp2.2\Business.dll
+C:\Users\maike.p\source\repos\PCO\Business\obj\Release\netcoreapp2.2\Business.pdb

@@ -1,0 +1,191 @@
+﻿@model PCO.ViewHelper.ViewHelper
+
+<!DOCTYPE hmtl>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>LOJA VI</title>
+    <link rel="stylesheet" type="text/css" href="~/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/style.css" />
+    <style>
+        .table {
+            width: 100%;
+            height: auto;
+            margin-left: 10%;
+            border: 1px solid #000000;
+            margin-top: 50px;
+        }
+
+        table td {
+            width: auto;
+            border: 1px solid #000000;
+        }
+
+            table td input {
+                width: 100%;
+                height: 100%;
+                border: 0px;
+            }
+
+        table th {
+            width: auto;
+            border: 1px solid #000000;
+        }
+
+        .tabela {
+            width: 80%;
+            height: auto;
+            margin-left: 10%;
+        }
+    </style>
+
+</head>
+<body>
+    <div>
+
+        <div id="top">
+
+            <div class="menu-top">
+                <div class="menu-ul">
+                    <ul>
+                        <li class="menu-link"><a herf="#">Home</a> </li>
+                        <li class="menu-link"><a herf="#">Produtos</a> </li>
+                        <li class="menu-link"><a herf="#">Contatos</a> </li>
+                        <li class="menu-link"><a herf="#">Sobre</a> </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="tabela">
+            <label for="txtInicio">Data Inicial:<input id="txtDataInicio" type="date" name="txtInicio" value="" /></label>
+            <label for="txtHorizonte">Horizonte:<input type="text" name="txtHorizonte" id="txtHorizonte" /></label>
+            <input type="button" name="Pesquisar-Horizonte" value="btnPesquisar" onclick="pesquisarHorizonte()" />
+            </br>
+        </div>
+        <br>
+
+        <div class="tabela">
+            <table>
+                <thead>
+                    <tr>
+
+                        <th>ID_T</th>
+                        <th>T_Descrição</th>
+                        <th>ID_C</th>
+                        <th>Descricao</th>
+
+                        @{
+                            if (Model.resultado != null)
+                            {
+                                foreach(var item in Model.resultado)
+                                {
+                                    <th>Situação</th>
+                                    <th>@item.Orcado[0].NomeColuna </th>
+                                }
+                            }
+
+                        }
+                    </tr>
+                </thead>
+                <tbody @{ foreach (var item in Model.resultado) { <tr>
+                                   <td><input type="text" name="ID_Tipo" value="@item.Tipo.ID_Tipo" size="2" /></td>
+                                   <td><input type="text" name="T_Tipo" value="@item.Tipo.Descricao" /></td>
+                                   <td><input type="text" name="ID_Conta" value="@item.Conta.ID_Conta" size="2" /></td>
+                                   <td><input type="text" name="Descricao" value="@item.Conta.Descricao" /></td>
+
+                                   @foreach(var it in item.Orcado)
+                                   {
+                                       <td><input type="text" name="txtSituacao" value="@it.Situacao" onblur="" size="2" /></td>
+                                       <td><input type="text" name="txtValorOrcado" value="@it.Valor" onblur="" /></td>
+                                       <input type="hidden" name="txtID_Movimento" value="@it.ID_Movimento" onblur="" />
+
+                                   }
+
+                                </tr>
+
+                            }
+                        }
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function atualizar(id, nome, valor) {
+            document.getElementsByName(nome).style.backgroundColor='#ffffff';
+            var form = new FormData();
+
+            form.append("valorCampo", valor);
+            form.append("Id_movimento", id);
+            form.append("nomeCampo", nome);
+
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState === 4 && xmlHttp === 200) {
+                    alert(xmlHttp.responseText);
+                }
+            };
+            xmlHttp.open("POST", "@Url.Action("AlterarCampos", "Home")", true);
+            xmlHttp.send(form);
+        }
+
+
+
+        function pesquisarHorizonte(dataInicio, horizonte) {
+            if (dataInicio === null || horizonte === null || horizonte === "" || dataInicio === "") {
+                var dataInicio = document.getElementById("txtDataInicio").value;
+                var horizonte = document.getElementById("txtHorizonte").value;
+            }
+            var form = new FormData();
+
+            form.append("dataInicio", dataInicio);
+            form.append("horizonte", horizonte);
+
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState === 4 && xmlHttp === 200) {
+                    console.log(xmlHttp.responseText);
+                }
+            };
+            xmlHttp.open("POST", "@Url.Action("PesquisarHorizonte", "Home")", true);
+            xmlHttp.send(form);
+        }
+
+        window.onload();
+    </script>
+</body>
+</html>
+
+
+
+<!--
+<th>ID_Con</th>
+<th>Valor Inicial</th>
+<th>Valor Final</th>
+<th>Valor Acumulado Inicial</th>
+<th>Valor Acumulado</th>
+<th>Valor Realizado</th>
+<th>Valor Debito Inicial</th>
+<th>Id_Tip</th>
+<th>Data e Hora</th>
+<th>Valor Orçado</th>
+<th>Observação do Gestor</th>
+    -->
+<!---
+                   <td>res.Orcado.id</td>
+                   <td>res.ID_Conta</td>
+                   <td><input type="text" name="ValorInicial" value="res.ValorInicial" onblur="atualizar('res.ID_Movimento', this.name, this.value)" onFocus="this.style.backgroundColor='#FFFBDD'"  /></td>
+                   <td><input type="text" name="ValorFinal" value="res.ValorFinal" onblur="atualizar('res.ID_Movimento', this.name, this.value)"/> </td>
+                   <td><input type="text" name="ValorAcumuladoInicial" value="res.ValorAcumuladoInicial" onblur="atualizar('res.ID_Movimento', this.name, this.value)" /></td>
+                   <td><input type="text" name="ValorAcumulado" value="res.ValorAcumulado" onblur="atualizar('res.ID_Movimento', this.name, this.value)"/></td>
+                   <td><input type="text" name="ValorRealizado" value="res.ValorRealizado" onblur="atualizar('res.ID_Movimento', this.name, this.value)"/></td>
+                   <td><input type="text" name="ValorDebitoInicial" value="res.ValorDebitoInicial" onblur="atualizar('res.ID_Movimento', this.name, this.value)"/></td>
+                   <td><input type="text" name="ID_Tipo" value="res.ID_Tipo" /></td>
+                   <td><input type="datetime" name="Data" value="res.Data" /></td>
+                   <td>res.ValorOrcado</td>
+                   <td>res.Obs_Gestor</td>
+   -->

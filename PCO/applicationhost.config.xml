@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <system.webServer>
+    ...
+    <globalModules>
+      ...
+      <add name="AspNetCoreModuleV2" image="%IIS_BIN%\Asp.Net Core Module\V2\aspnetcorev2.dll" />
+    </globalModules>
+  </system.webServer>
+  ...
+  <location path="" overrideMode="Allow">
+    <system.webServer>
+      <modules>
+        ...
+        <add name="AspNetCoreModuleV2" lockItem="true" />
+      </modules>
+    </system.webServer>
+  </location>
+</configuration>
